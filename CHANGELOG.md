@@ -2,6 +2,14 @@
 
 Кратко — что добавляет каждый коммит (новые сверху).
 
+## Материализация доменной модели: Spring Boot + JPA
+- Переход на **Spring Boot 3.3.5 + Spring Data JPA**; PostgreSQL (основной таргет) + H2 (профиль `dev`).
+- **~17 JPA-сущностей** по `docs/UniPlan-доменная-модель.md` (`org.uniplan.domain`): оргструктура (University/Institute/Department), календарь (Term/Block/DatePattern), учебные (Course/CourseOffering/Group/Section), ресурсы (Location/Instructor), цикловая ротация (DisciplineAssignment/RotationAssignment), предпочтения преподавателей (InstructorAvailability), версионирование (ScheduleVersion/Assignment). Страховки INS-1..4 заложены.
+- Spring Data репозитории; **context-load тест на H2 (зелёный)** — проверяет маппинг всех сущностей + сохранение.
+- `application.yml` (профили: Postgres по умолчанию / H2 dev), `docker-compose.yml` (Postgres 16).
+- Спайк-0 теперь запускается `./gradlew runSpike` (приложение — `./gradlew bootRun`).
+- Follow-up: заменить Hibernate `ddl-auto` на Flyway-миграции.
+
 ## Каркас проекта + спайк CPSolver + проектные документы
 - Gradle/Kotlin проект: wrapper 8.10.2, JDK 21, зависимость `org.unitime:cpsolver:1.4.91`.
 - **Спайк-0** (`src/main/kotlin/org/uniplan/spike/BlockSpike.kt`): прогон движка IFS из нашего кода — зелёный, подтверждает цепочку Gradle → CPSolver → решатель.
