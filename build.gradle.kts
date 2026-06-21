@@ -42,3 +42,11 @@ tasks.register<JavaExec>("runSpike") {
     mainClass.set("org.uniplan.spike.BlockSpikeKt")
     classpath = sourceSets["main"].runtimeClasspath
 }
+
+// Спайк Layer 2: адаптер домен → coursett. Запуск: ./gradlew runCoursett
+tasks.register<JavaExec>("runCoursett") {
+    group = "application"
+    description = "Спайк Layer 2: построить модель coursett из домена и решить."
+    mainClass.set("org.uniplan.spike.CoursettSpikeKt")
+    classpath = sourceSets["main"].runtimeClasspath
+}

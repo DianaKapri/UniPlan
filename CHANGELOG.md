@@ -2,6 +2,12 @@
 
 Кратко — что добавляет каждый коммит (новые сверху).
 
+## Спайк Layer 2: адаптер домен → coursett (главный де-риск Strategy A закрыт)
+- `src/main/kotlin/org/uniplan/spike/CoursettSpike.kt`: модель `coursett` строится **программно** из игрушечного блока, решатель выдаёт «время + аудитория». Запуск: `./gradlew runCoursett`.
+- **Сценарий 1** (1 преподаватель + 1 аудитория, 3 дисциплины): свободное время (старт 08:30/10:30, длительность 90 мин и 4 ч) — все размещены без наложений.
+- **Сценарий 2** (числитель/знаменатель): две секции в одном слоте/аудитории на нечёт/чёт недели → обе размещены, **week-aware конфликты работают** (требование R5).
+- Подтверждает переиспользование coursett для Layer 2 — ключевая ставка Strategy A.
+
 ## Материализация доменной модели: Spring Boot + JPA
 - Переход на **Spring Boot 3.3.5 + Spring Data JPA**; PostgreSQL (основной таргет) + H2 (профиль `dev`).
 - **~17 JPA-сущностей** по `docs/UniPlan-доменная-модель.md` (`org.uniplan.domain`): оргструктура (University/Institute/Department), календарь (Term/Block/DatePattern), учебные (Course/CourseOffering/Group/Section), ресурсы (Location/Instructor), цикловая ротация (DisciplineAssignment/RotationAssignment), предпочтения преподавателей (InstructorAvailability), версионирование (ScheduleVersion/Assignment). Страховки INS-1..4 заложены.
