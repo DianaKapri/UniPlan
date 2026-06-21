@@ -1,0 +1,14 @@
+# Gradle / Kotlin
+.gradle/
+.kotlin/
+build/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# OS / tooling
+.DS_Store
+.playwright-mcp/
